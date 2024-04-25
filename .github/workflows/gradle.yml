@@ -50,7 +50,7 @@ jobs:
       ####### CD ##############
       ## docker hub 로그인 && image build && push
       - name: Docker hub login
-        run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWORD}}
+        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Docker image build
         run: |
