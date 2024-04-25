@@ -51,15 +51,15 @@ jobs:
     ####### CD ##############
     ## docker hub 로그인 && image build && push
     - name: Docker hub login
-      run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+      run: docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWORD}}
 
     - name: Docker image build
       run: |
         cd ./backend
-        docker build -t ${{secrets.DOCKER_USERNAME}}/gitaction-test .
+        docker build -t ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test .
 
     - name: Docker Hub push
-      run: docker push ${{secrets.DOCKER_USERNAME}}/gitaction-test
+      run: docker push ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test
 
     - name: Deploy
       uses: appleboy/ssh-action@master
@@ -69,8 +69,8 @@ jobs:
         username: ubuntu
         key: ${{secrets.KEY}}
         script: |
-          sudo docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+          sudo docker login -u ${{secrets.DOCKERHUB_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWORD}}
           sudo docker rm -f $(sudo docker ps -qa) 2>/dev/null || true
-          sudo docker pull ${{secrets.DOCKER_USERNAME}}/gitaction-test
-          sudo docker run --name gitaction-test --rm -dit -p 8080:8080 ${{secrets.DOCKER_USERNAME}}/gitaction-test &
+          sudo docker pull ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test
+          sudo docker run --name gitaction-test --rm -dit -p 8080:8080 ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test &
           sudo docker image prune -f
