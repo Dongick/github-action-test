@@ -36,7 +36,7 @@ public class CustomOAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHa
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority();
 
-        String redirectUrl = "http://localhost:3000/?email=" + URLEncoder.encode(email, "UTF-8");
+        String redirectUrl = "https://comission-platform.shop/?email=" + URLEncoder.encode(email, "UTF-8");
 
         response.sendRedirect(redirectUrl);
     }
