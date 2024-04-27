@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
@@ -21,6 +22,9 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomOAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
+    @Value("${app.cors.allowed-origins}")
+    private final String[] allowedOrigin;
+
     @Override
     @Transactional
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -36,7 +40,7 @@ public class CustomOAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHa
         GrantedAuthority auth = iterator.next();
         String role = auth.getAuthority();
 
-        String redirectUrl = "https://comission-platform.shop/?email=" + URLEncoder.encode(email, "UTF-8");
+        String redirectUrl = allowedOrigin[0] + "/?email=" + URLEncoder.encode(email, "UTF-8");
 
         response.sendRedirect(redirectUrl);
     }

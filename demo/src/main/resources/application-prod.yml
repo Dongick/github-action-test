@@ -1,0 +1,31 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:27017/?authSource=admin&authMechanism=SCRAM-SHA-1
+      database: ${MONGODB_DATABASE}
+
+  cloud:
+    aws:
+      credentials:
+        access-key: ${AWS_ACCESS_KEY}
+        secret-key: ${AWS_SECRET_KEY}
+      s3:
+        bucket: ${S3_BUCKET}
+      region:
+        static: ap-northeast-2
+      stack:
+        auto: false
+
+  security:
+    oauth2:
+      client:
+        registration:
+          naver:
+            clientId: ${OAUTH2_NAVER_CLIENT_ID}
+            clientSecret: ${OAUTH2_NAVER_CLIENT_SECRET}
+            redirectUri: ${OAUTH2_NAVER_REDIRECT_URI}
+
+
+app:
+  cors:
+    allowed-origins: https://comission-platform.shop
