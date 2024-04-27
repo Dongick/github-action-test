@@ -78,5 +78,4 @@ jobs:
               -e S3_BUCKET="${{ secrets.S3_BUCKET }}" \
               -e OAUTH2_NAVER_REDIRECT_URI="${{ secrets.OAUTH2_NAVER_REDIRECT_URI }}" \
               ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test &
-#            sudo docker run --name gitaction-test --rm -dit -p 8080:8080 ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test &
             sudo docker image prune -f
