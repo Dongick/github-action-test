@@ -16,6 +16,16 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: read
+    env:
+      AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
+      AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      OAUTH2_NAVER_CLIENT_ID: ${{ secrets.OAUTH2_NAVER_CLIENT_ID }}
+      OAUTH2_NAVER_CLIENT_SECRET: ${{ secrets.OAUTH2_NAVER_CLIENT_SECRET }}
+      S3_BUCKET: ${{secrets.S3_BUCKET}}
+      OAUTH2_NAVER_REDIRECT_URI: ${{secrets.OAUTH2_NAVER_REDIRECT_URI}}
 
     steps:
       - uses: actions/checkout@v4
@@ -62,7 +72,6 @@ jobs:
 
       - name: Deploy
         uses: appleboy/ssh-action@master
-        id: deploy
         with:
           host: ${{secrets.HOST}}
           username: ubuntu
