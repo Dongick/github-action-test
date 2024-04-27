@@ -42,7 +42,6 @@ jobs:
 
       - name: Grant execute permission for gradle && Build with Gradle without Test
         run: |
-          cd ./backend
           chmod +x gradlew
           ./gradlew clean build -x test --stacktrace
 
@@ -63,9 +62,7 @@ jobs:
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
       - name: Docker image build
-        run: |
-          cd ./backend
-          docker build -t ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test .
+        run: docker build -t ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test .
 
       - name: Docker Hub push
         run: docker push ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test
