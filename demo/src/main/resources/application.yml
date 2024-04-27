@@ -18,8 +18,8 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@localhost:27017/?authSource=admin&authMechanism=SCRAM-SHA-1
-      database: CoMission_Platform
+      uri: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@ec2-3-35-87-46.ap-northeast-2.compute.amazonaws.com:27017/?authSource=admin&authMechanism=SCRAM-SHA-1
+      database: Comission_Platform
 
   jwt:
     secret: ${JWT_SECRET}
