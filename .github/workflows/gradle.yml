@@ -68,15 +68,15 @@ jobs:
             sudo docker rm -f $(sudo docker ps -qa) 2>/dev/null || true
             sudo docker pull ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test
             sudo docker run --name gitaction-test --rm -dit -p 8080:8080 \
-              -e AWS_ACCESS_KEY=${{ secrets.AWS_ACCESS_KEY }} \
-              -e AWS_SECRET_KEY=${{ secrets.AWS_SECRET_KEY }} \
-              -e MONGODB_USERNAME=${{ secrets.MONGODB_USERNAME }} \
-              -e MONGODB_PASSWORD=${{ secrets.MONGODB_PASSWORD }} \
-              -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
-              -e OAUTH2_NAVER_CLIENT_ID=${{ secrets.OAUTH2_NAVER_CLIENT_ID }} \
-              -e OAUTH2_NAVER_CLIENT_SECRET=${{ secrets.OAUTH2_NAVER_CLIENT_SECRET }} \
-              -e S3_BUCKET=${{ secrets.S3_BUCKET }} \
-              -e OAUTH2_NAVER_REDIRECT_URI=${{ secrets.OAUTH2_NAVER_REDIRECT_URI }} \
-              ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test &
+            -e AWS_ACCESS_KEY='${{ secrets.AWS_ACCESS_KEY }}' \
+            -e AWS_SECRET_KEY='${{ secrets.AWS_SECRET_KEY }}' \
+            -e MONGODB_USERNAME='${{ secrets.MONGODB_USERNAME }}' \
+            -e MONGODB_PASSWORD='${{ secrets.MONGODB_PASSWORD }}' \
+            -e JWT_SECRET='${{ secrets.JWT_SECRET }}' \
+            -e OAUTH2_NAVER_CLIENT_ID='${{ secrets.OAUTH2_NAVER_CLIENT_ID }}' \
+            -e OAUTH2_NAVER_CLIENT_SECRET='${{ secrets.OAUTH2_NAVER_CLIENT_SECRET }}' \
+            -e S3_BUCKET='${{ secrets.S3_BUCKET }}' \
+            -e OAUTH2_NAVER_REDIRECT_URI='${{ secrets.OAUTH2_NAVER_REDIRECT_URI }}' \
+            ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test &
 #            sudo docker run --name gitaction-test --rm -dit -p 8080:8080 ${{secrets.DOCKERHUB_USERNAME}}/gitaction-test &
             sudo docker image prune -f
