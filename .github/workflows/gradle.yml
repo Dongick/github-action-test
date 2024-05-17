@@ -16,19 +16,6 @@ jobs:
     runs-on: ubuntu-22.04
     permissions:
       contents: read
-    env:
-      AWS_ACCESS_KEY: ${{ secrets.AWS_ACCESS_KEY }}
-      AWS_SECRET_KEY: ${{ secrets.AWS_SECRET_KEY }}
-      MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
-      MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
-      MONGODB_HOST: ${{secrets.MONGODB_HOST}}
-      MONGODB_DATABASE: ${{secrets.MONGODB_DATABASE}}
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      OAUTH2_NAVER_CLIENT_ID: ${{ secrets.OAUTH2_NAVER_CLIENT_ID }}
-      OAUTH2_NAVER_CLIENT_SECRET: ${{ secrets.OAUTH2_NAVER_CLIENT_SECRET }}
-      S3_BUCKET: ${{secrets.S3_BUCKET}}
-      OAUTH2_NAVER_REDIRECT_URI: ${{secrets.OAUTH2_NAVER_REDIRECT_URI}}
-      SPRING_PROFILES_ACTIVE: ${{secrets.SPRING_PROFILES_ACTIVE}}
 
     steps:
       - uses: actions/checkout@v4
