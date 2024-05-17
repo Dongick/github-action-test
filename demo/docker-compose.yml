@@ -6,7 +6,9 @@ services:
     ports:
       - "27018:27017"
     environment:
-      - LC_ALL=C.UTF-8
+      - LC_ALL: C.UTF-8
+      - MONGO_INITDB_ROOT_USERNAME: root
+      - MONGO_INITDB_ROOT_PASSWORD: 1234
     volumes:
       - testmongo-volume:/data/db
     networks:
