@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:27017/?authSource=admin&authMechanism=SCRAM-SHA-1
+      uri: mongodb://${MONGODB_USERNAME}:${MONGODB_PASSWORD}@${MONGODB_HOST}:27018/?authSource=admin&authMechanism=SCRAM-SHA-1
       database: ${MONGODB_DATABASE}
 
   security:
