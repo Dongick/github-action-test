@@ -6,10 +6,29 @@ services:
     ports:
       - "27017:27017"
     environment:
+      - TZ=Asia/Seoul
       - LC_ALL=C.UTF-8
     command: [--auth]
     volumes:
       - testmongo-volume:/data/db
+    networks:
+      - test_network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - TZ=Asia/Seoul
+      - LC_ALL=C.UTF-8
+    volumes:
+      - testmysql-volume:/var/lib/mysql
     networks:
       - test_network
 
@@ -26,6 +45,7 @@ services:
       - .env
     depends_on:
       - mongodb
+      - mysql
     networks:
       - test_network
 
@@ -34,4 +54,6 @@ networks:
 
 volumes:
   testmongo-volume:
+    external: true
+  testmysql-volume:
     external: true
