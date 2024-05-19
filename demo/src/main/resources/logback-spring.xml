@@ -27,11 +27,10 @@
     </appender>
 
     <springProfile name="dev">
-        <root level="INFO">
+        <root level="DEBUG">
             <appender-ref ref="STDOUT" />
             <appender-ref ref="FILE" />
         </root>
-        <logger name="mission" level="DEBUG" />
     </springProfile>
 
     <springProfile name="prod">
