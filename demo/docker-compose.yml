@@ -21,10 +21,6 @@ services:
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - TZ=Asia/Seoul
       - LC_ALL=C.UTF-8
     volumes:
@@ -43,6 +39,10 @@ services:
       - "8080:8080"
     env_file:
       - .env
+    environment:
+      - TZ=Asia/Seoul
+    volumes:
+      - /home/ubuntu/demo/logs:/logs
     depends_on:
       - mongodb
       - mysql
