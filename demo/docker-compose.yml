@@ -40,7 +40,7 @@ services:
     env_file:
       - .env
     volumes:
-      - testspring-volume:/var/log
+      - /home/ubuntu/demo/logs:/logs
     depends_on:
       - mongodb
       - mysql
@@ -52,8 +52,6 @@ networks:
 
 volumes:
   testmongo-volume:
-    external: true
-  testspring-volume:
     external: true
   testmysql-volume:
     external: true
